@@ -1,0 +1,67 @@
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="container" style="text-align: center">
+          <img
+            src="../../../assets/exam-book-logo.jpg"
+            alt="Exam Book Logo"
+            width="200"
+            height="150"
+          />
+        </div>
+        <mat-card>
+          <mat-card-title class="mt-10">
+            <h1 style="text-align: center">Login</h1>
+          </mat-card-title>
+          <form (ngSubmit)="onLoginFormSubmit()" #loginForm="ngForm">
+            <mat-card-content>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Username</mat-label>
+                <input
+                  type="text"
+                  matInput
+                  placeholder="Username"
+                  name="username"
+                  [(ngModel)]="loginFormData.username"
+                  #username="ngModel"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input
+                  type="password"
+                  matInput
+                  placeholder="Password"
+                  name="password"
+                  [(ngModel)]="loginFormData.password"
+                  #password="ngModel"
+                  required
+                />
+              </mat-form-field>
+              <div class="container" style="text-align: center">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  [disabled]="!loginForm.valid && loginForm.touched"
+                >
+                  Login
+                </button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  color="accent"
+                  style="margin-left: 10px"
+                  [routerLink]="'/signup'"
+                >
+                  Signup
+                </button>
+              </div>
+            </mat-card-content>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

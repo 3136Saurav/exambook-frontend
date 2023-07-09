@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    [routerLink]="'/'"
+  >
+    <mat-icon>sticky_note_2</mat-icon>
+  </button>
+  <span>Exam Book</span>
+  <span class="example-spacer"></span>
+  <button
+    *ngIf="!loginService.isLoggedIn()"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    [routerLink]="'/login'"
+  >
+    <mat-icon>login</mat-icon>
+  </button>
+  <button
+    *ngIf="loginService.isLoggedIn()"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    [routerLink]="'/logout'"
+    (click)="onLogout()"
+  >
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>

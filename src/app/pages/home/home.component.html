@@ -1,0 +1,37 @@
+<div class="bootstrap-wrapper">
+  <div class="container">
+    <div class="row mt-20">
+      <div class="col-md-6 offset-md-3 text-center">
+        <h1>Welcome to ExamBook</h1>
+        <button mat-raised-button color="primary">Home</button>
+        <button
+          *ngIf="!loginService.isLoggedIn()"
+          mat-raised-button
+          color="primary"
+          class="ml-10"
+          routerLink="login"
+        >
+          Login
+        </button>
+        <button
+          *ngIf="loginService.isLoggedIn() && loginService.isAdmin()"
+          mat-raised-button
+          color="primary"
+          class="ml-10"
+          routerLink="admin"
+        >
+          Go to Admin Page
+        </button>
+        <button
+          *ngIf="loginService.isLoggedIn() && !loginService.isAdmin()"
+          mat-raised-button
+          color="primary"
+          class="ml-10"
+          routerLink="admin"
+        >
+          Go to User Page
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
