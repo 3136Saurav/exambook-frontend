@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
 export class SignupComponent {
   @ViewChild("signUpForm") signUpForm: NgForm
 
-  constructor(private userService: UserService, private _snackBar: MatSnackBar) {}
+  constructor(private userService: UserService, private router: Router, private _snackBar: MatSnackBar) {}
 
   public user = {
     username: '',
@@ -39,6 +40,8 @@ export class SignupComponent {
       this._snackBar.open("User Created!", '', {
         duration: 2000,
       })
+
+      this.router.navigate(['/login'])      
     }, (error) => {
       console.log(error)
       this._snackBar.open('Something went wrong!', '', {
