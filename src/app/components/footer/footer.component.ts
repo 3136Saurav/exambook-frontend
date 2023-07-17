@@ -3,8 +3,17 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
-})
-export class FooterComponent {
+  styles: [`
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
 
-}
+    .footer-text {
+      flex-grow: 1;
+      text-align: center;
+    }
+  `]
+})
+export class FooterComponent { }

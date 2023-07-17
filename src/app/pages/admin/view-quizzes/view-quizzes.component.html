@@ -1,0 +1,28 @@
+<h1 class="mt-10 text-center">Quizzes</h1>
+<mat-card *ngFor="let quiz of quizzes" class="mt-20">
+  <mat-card-header>
+    <mat-card-subtitle>
+      {{ quiz.category.title | uppercase }}
+    </mat-card-subtitle>
+    <mat-card-title>
+      {{ quiz.title }}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    {{ quiz.description }}
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button color="warn">Take Quiz</button>
+    <button mat-stroked-button class="ml-10" color="primary">
+      Questions: {{ quiz.numberOfQuestions }}
+    </button>
+    <button mat-stroked-button class="ml-10" color="primary">
+      Maximum Marks: {{ quiz.numberOfQuestions }}
+    </button>
+  </mat-card-actions>
+</mat-card>
+<div class="container text-center mt-20">
+  <button routerLink="/admin/addQuiz" mat-raised-button color="accent">
+    Add Quiz
+  </button>
+</div>

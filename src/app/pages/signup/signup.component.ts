@@ -51,6 +51,7 @@ export class SignupComponent {
   }
 
   onClear() {
+    console.log('Clear the fields')
     this.signUpForm.reset()
   }
 }
