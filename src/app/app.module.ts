@@ -28,6 +28,7 @@ import { MatListModule } from '@angular/material/list';
 import { AdminSidebarComponent } from './pages/admin/admin-sidebar/admin-sidebar.component'
 import {MatTableModule} from '@angular/material/table';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatDialogModule} from '@angular/material/dialog';
 import { NormalSidebarComponent } from './pages/normal/normal-sidebar/normal-sidebar.component';
 import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
 import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
@@ -70,7 +71,8 @@ import { AddQuizComponent } from './pages/admin/add-quiz/add-quiz.component';
     MatIconModule,
     MatListModule,
     MatTableModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatDialogModule,
   ],
   providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}, {
     provide: HTTP_INTERCEPTORS,

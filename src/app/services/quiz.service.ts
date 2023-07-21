@@ -12,4 +12,12 @@ export class QuizService {
   public getQuizzes() {
     return this.http.get(`${baseUrl}/quiz/`);
   }
+
+  public addQuiz(quiz) {
+    return this.http.post(`${baseUrl}/quiz/`, quiz)
+  }
+
+  public deleteQuiz(quizId) {
+    return this.http.delete(`${baseUrl}/quiz/${quizId}`, {responseType: 'text'})
+  }
 }

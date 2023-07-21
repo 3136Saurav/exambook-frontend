@@ -19,6 +19,14 @@
     <button mat-stroked-button class="ml-10" color="primary">
       Maximum Marks: {{ quiz.numberOfQuestions }}
     </button>
+    <button
+      mat-flat-button
+      style="background-color: black; color: white"
+      class="ml-10"
+      (click)="onDeleteQuiz(quiz.id)"
+    >
+      Delete
+    </button>
   </mat-card-actions>
 </mat-card>
 <div class="container text-center mt-20">

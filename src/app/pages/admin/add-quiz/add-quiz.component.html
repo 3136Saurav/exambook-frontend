@@ -53,15 +53,28 @@
                 required
               />
             </mat-form-field>
-            <mat-slide-toggle class="mt-10"> Publish Quiz </mat-slide-toggle>
+            <mat-slide-toggle
+              [(ngModel)]="quiz.active"
+              name="publish"
+              #publish="ngModel"
+              class="mt-10"
+            >
+              Publish Quiz
+            </mat-slide-toggle>
 
             <br />
             <mat-form-field class="mt-20">
               <mat-label>Select Category</mat-label>
-              <mat-select matNativeControl>
+              <mat-select
+                matNativeControl
+                name="category"
+                [(ngModel)]="quiz.category.id"
+                required
+              >
                 <mat-option
                   *ngFor="let category of categories"
                   [value]="category.id"
+                  name="category"
                 >
                   {{ category.title }}
                 </mat-option>
