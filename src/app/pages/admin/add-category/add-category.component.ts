@@ -31,6 +31,7 @@ export class AddCategoryComponent implements OnInit {
 
     this.categoryService.addCategory(this.category).subscribe((data) => {
       console.log(this.route)
+      this.router.navigate(['/admin/categories'])
     }, (error) => {
       console.log(error)
       this._snackBar.open('Something went wrong', '', {

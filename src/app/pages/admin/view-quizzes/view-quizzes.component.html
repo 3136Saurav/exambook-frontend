@@ -21,6 +21,14 @@
     </button>
     <button
       mat-flat-button
+      style="background-color: blue; color: white"
+      class="ml-10"
+      [routerLink]="'/admin/updateQuiz/' + quiz.id"
+    >
+      Update
+    </button>
+    <button
+      mat-flat-button
       style="background-color: black; color: white"
       class="ml-10"
       (click)="onDeleteQuiz(quiz.id)"

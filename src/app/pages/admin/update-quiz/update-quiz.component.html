@@ -1,10 +1,14 @@
 <mat-card>
-  <h1 class="ml-10 text-center">Add New Quiz</h1>
+  <h1 class="ml-10 text-center">Update Quiz</h1>
   <mat-card-content>
     <div class="bootstrap-wrapper">
       <div class="row">
         <div class="col-md-8 offset-md-2">
-          <form (ngSubmit)="onAddQuizFormSubmit()" #addQuizForm="ngForm">
+          <form
+            *ngIf="quiz"
+            (ngSubmit)="onUpdateForm()"
+            #updateQuizForm="ngForm"
+          >
             <mat-form-field class="w-100" appearance="outline">
               <mat-label>Title</mat-label>
               <input
@@ -85,9 +89,9 @@
               <button
                 mat-raised-button
                 color="accent"
-                [disabled]="!addQuizForm.valid"
+                [disabled]="!updateQuizForm.valid"
               >
-                Add
+                Update
               </button>
             </div>
           </form>

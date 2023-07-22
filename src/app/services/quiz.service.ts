@@ -13,8 +13,16 @@ export class QuizService {
     return this.http.get(`${baseUrl}/quiz/`);
   }
 
+  public getQuiz(quizId) {
+    return this.http.get(`${baseUrl}/quiz/${quizId}`)
+  }
+
   public addQuiz(quiz) {
     return this.http.post(`${baseUrl}/quiz/`, quiz)
+  }
+
+  public updateQuiz(quiz) {
+    return this.http.put(`${baseUrl}/quiz/`, quiz)
   }
 
   public deleteQuiz(quizId) {

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { QuizService } from 'src/app/services/quiz.service';
 
@@ -12,7 +13,7 @@ import { QuizService } from 'src/app/services/quiz.service';
 export class AddQuizComponent implements OnInit {
   @ViewChild("addQuizForm") quizForm: NgForm
 
-  constructor(private categotryService: CategoryService, private quizService: QuizService,  private _snackBar: MatSnackBar) {}
+  constructor(private categotryService: CategoryService, private quizService: QuizService, private router: Router,  private _snackBar: MatSnackBar) {}
   
   ngOnInit(): void {
     this.categotryService.getCategories().subscribe((data: any) => {
@@ -45,6 +46,7 @@ categories = [
 
     this.quizService.addQuiz(this.quiz).subscribe((data) => {
       console.log(data)
+      this.router.navigate(['/admin/quizzes'])
     }, (error) => {
       console.log(error)
       this._snackBar.open('Something went wrong', '', {
