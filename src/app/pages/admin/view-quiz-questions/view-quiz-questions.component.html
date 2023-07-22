@@ -1,0 +1,59 @@
+<h1 class="text-center mb-10">
+  Quiz: <strong>{{ quizTitle }}</strong>
+</h1>
+
+<div class="bootstrap-wrapper">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="container text-center">
+        <button
+          mat-raised-button
+          color="accent"
+          class="mb-10"
+          [routerLink]="'/admin/addQuizQuestions/' + quizId"
+        >
+          Add Question
+        </button>
+      </div>
+      <mat-card *ngFor="let question of questions; let i = index">
+        <mat-card-content>
+          <p>Q{{ i + 1 }}&#41; {{ question.description }}</p>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <p>a&#41; {{ question.option1 }}</p>
+              </div>
+              <div class="col-md-6">
+                <p>b&#41; {{ question.option2 }}</p>
+              </div>
+              <div class="col-md-6">
+                <p>c&#41; {{ question.option3 }}</p>
+              </div>
+              <div class="col-md-6">
+                <p>d&#41; {{ question.option4 }}</p>
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+            <p class="mt-20">
+              <em>Correct Answer: </em>
+              <strong>{{ question.answer }}</strong>
+            </p>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            mat-stroked-button
+            class="ml-10"
+            color="primary"
+            (click)="onQuestionDelete(question.id)"
+          >
+            Delete
+          </button>
+          <button mat-stroked-button class="ml-10" color="primary" mat-button>
+            Update
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,13 @@
     {{ quiz.description }}
   </mat-card-content>
   <mat-card-actions>
-    <button mat-flat-button color="warn">Take Quiz</button>
+    <button
+      mat-flat-button
+      color="warn"
+      [routerLink]="['/admin/viewQuestions/', quiz.id]"
+    >
+      View Quiz
+    </button>
     <button mat-stroked-button class="ml-10" color="primary">
       Questions: {{ quiz.numberOfQuestions }}
     </button>
