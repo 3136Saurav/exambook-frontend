@@ -28,4 +28,8 @@ export class QuizService {
   public deleteQuiz(quizId) {
     return this.http.delete(`${baseUrl}/quiz/${quizId}`, {responseType: 'text'})
   }
+
+  getQuizOfCategory(categoryId: string) {
+    return this.http.get(`${baseUrl}/quiz/category/${categoryId}`);
+  }
 }

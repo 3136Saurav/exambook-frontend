@@ -38,6 +38,9 @@ import { UpdateQuizComponent } from './pages/admin/update-quiz/update-quiz.compo
 import { ViewQuizQuestionsComponent } from './pages/admin/view-quiz-questions/view-quiz-questions.component';
 import { AddQuizQuestionsComponent } from './pages/admin/add-quiz-questions/add-quiz-questions.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { ViewUserQuizzesComponent } from './pages/normal/view-user-quizzes/view-user-quizzes.component';
+import { QuizInstructionsComponent } from './pages/normal/quiz-instructions/quiz-instructions.component';
+import { StartQuizComponent } from './pages/normal/start-quiz/start-quiz.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     AddQuizComponent,
     UpdateQuizComponent,
     ViewQuizQuestionsComponent,
-    AddQuizQuestionsComponent
+    AddQuizQuestionsComponent,
+    ViewUserQuizzesComponent,
+    QuizInstructionsComponent,
+    StartQuizComponent
   ],
   imports: [
     BrowserModule,
