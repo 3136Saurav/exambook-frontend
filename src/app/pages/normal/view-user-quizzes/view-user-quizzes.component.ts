@@ -23,6 +23,7 @@ export class ViewUserQuizzesComponent implements OnInit {
 
       this.quizService.getQuizzes().subscribe((data: any) => {
         this.allQuizzes = data;
+        this.quizzes = data;
         console.log(this.quizzes);
       }, (error) => {
         console.log(error);
@@ -40,7 +41,7 @@ export class ViewUserQuizzesComponent implements OnInit {
     const instructionDialogRef = this.instructionDialog.open(QuizInstructionsComponent, {
     
       width: '500px',
-      height: '300px',
+      height: '350px',
       data: {quizId: quizId}
     
     })

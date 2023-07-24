@@ -1,1 +1,63 @@
-<p>start-quiz works!</p>
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <h1>Instructions</h1>
+      </div>
+      <div class="col-md-8">
+        <ng-container class="mt-20" *ngIf="questions">
+          <h1 class="text-center">
+            <strong>{{ questions[0].quiz.title }}</strong>
+          </h1>
+
+          <mat-card
+            class="mt-10"
+            *ngFor="let question of questions; let i = index"
+          >
+            <mat-card-content>
+              <p>
+                <span>Q{{ i + 1 }}&#41;</span> {{ question.description }}
+              </p>
+              <mat-divider></mat-divider>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-radio-button
+                    [value]="question.option1"
+                    [name]="i + ''"
+                  ></mat-radio-button>
+                  {{ question.option1 }}
+                </div>
+                <div class="col-md-6">
+                  <mat-radio-button
+                    [value]="question.option2"
+                    [name]="i + ''"
+                  ></mat-radio-button>
+                  {{ question.option2 }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-radio-button
+                    [value]="question.option3"
+                    [name]="i + ''"
+                  ></mat-radio-button>
+                  {{ question.option3 }}
+                </div>
+                <div class="col-md-6">
+                  <mat-radio-button
+                    [value]="question.option4"
+                    [name]="i + ''"
+                  ></mat-radio-button>
+                  {{ question.option4 }}
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <div class="container mt-20">
+            <button mat-raised-button color="primary">Submit Test</button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

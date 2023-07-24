@@ -41,6 +41,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { ViewUserQuizzesComponent } from './pages/normal/view-user-quizzes/view-user-quizzes.component';
 import { QuizInstructionsComponent } from './pages/normal/quiz-instructions/quiz-instructions.component';
 import { StartQuizComponent } from './pages/normal/start-quiz/start-quiz.component';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 @NgModule({
   declarations: [
@@ -86,6 +88,7 @@ import { StartQuizComponent } from './pages/normal/start-quiz/start-quiz.compone
     MatTableModule,
     MatSlideToggleModule,
     MatDialogModule,
+    MatRadioModule,
     CKEditorModule
   ],
   providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}, {
