@@ -23,7 +23,6 @@ export class ViewUserQuizzesComponent implements OnInit {
 
       this.quizService.getQuizzes().subscribe((data: any) => {
         this.allQuizzes = data;
-        this.quizzes = data;
         console.log(this.quizzes);
       }, (error) => {
         console.log(error);
@@ -32,7 +31,7 @@ export class ViewUserQuizzesComponent implements OnInit {
       if (this.categoryId?.toLowerCase() == 'all') {
           this.quizzes = this.allQuizzes
       } else {
-        this.quizzes = this.allQuizzes.filter(quiz => quiz.category.id == this.categoryId)
+        this.quizzes = this.allQuizzes.filter(quiz => quiz.category.id === +this.categoryId)
       }
     })
   }

@@ -1,4 +1,4 @@
-<div class="bootstrap-wrapper">
+<div class="bootstrap-wrapper" *ngIf="!testSubmitted">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2">
@@ -10,54 +10,86 @@
             <strong>{{ questions[0].quiz.title }}</strong>
           </h1>
 
-          <mat-card
-            class="mt-10"
-            *ngFor="let question of questions; let i = index"
-          >
-            <mat-card-content>
-              <p>
-                <span>Q{{ i + 1 }}&#41;</span> {{ question.description }}
-              </p>
-              <mat-divider></mat-divider>
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-radio-button
-                    [value]="question.option1"
-                    [name]="i + ''"
-                  ></mat-radio-button>
-                  {{ question.option1 }}
+          <form (ngSubmit)="onSubmitTest()" #questionAnswerForm="ngForm">
+            <mat-card
+              class="mt-10"
+              *ngFor="let question of questions; let i = index"
+            >
+              <mat-card-content>
+                <p>
+                  <span>Q{{ i + 1 }}&#41;</span> {{ question.description }}
+                </p>
+                <mat-divider></mat-divider>
+                <div class="row">
+                  <div class="col-md-6">
+                    <input
+                      type="radio"
+                      [value]="question.option1"
+                      [name]="i + ''"
+                      [(ngModel)]="question.givenAnswer"
+                    />
+                    {{ question.option1 }}
+                  </div>
+                  <div class="col-md-6">
+                    <input
+                      type="radio"
+                      [value]="question.option2"
+                      [name]="i + ''"
+                      [(ngModel)]="question.givenAnswer"
+                    />
+                    {{ question.option2 }}
+                  </div>
                 </div>
-                <div class="col-md-6">
-                  <mat-radio-button
-                    [value]="question.option2"
-                    [name]="i + ''"
-                  ></mat-radio-button>
-                  {{ question.option2 }}
+                <div class="row">
+                  <div class="col-md-6">
+                    <input
+                      type="radio"
+                      [value]="question.option3"
+                      [name]="i + ''"
+                      [(ngModel)]="question.givenAnswer"
+                    />
+                    {{ question.option3 }}
+                  </div>
+                  <div class="col-md-6">
+                    <input
+                      type="radio"
+                      [value]="question.option4"
+                      [name]="i + ''"
+                      [(ngModel)]="question.givenAnswer"
+                    />
+                    {{ question.option4 }}
+                  </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-radio-button
-                    [value]="question.option3"
-                    [name]="i + ''"
-                  ></mat-radio-button>
-                  {{ question.option3 }}
-                </div>
-                <div class="col-md-6">
-                  <mat-radio-button
-                    [value]="question.option4"
-                    [name]="i + ''"
-                  ></mat-radio-button>
-                  {{ question.option4 }}
-                </div>
-              </div>
-            </mat-card-content>
-          </mat-card>
-          <div class="container mt-20">
-            <button mat-raised-button color="primary">Submit Test</button>
-          </div>
+              </mat-card-content>
+            </mat-card>
+            <div class="container mt-20">
+              <button mat-raised-button color="accent">Submit Test</button>
+            </div>
+          </form>
         </ng-container>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="bootstrap-wrapper" *ngIf="testSubmitted">
+  <div class="row mt-20">
+    <div class="col-md-6 offset-md-3">
+      <mat-card>
+        <mat-card-header>RESULT</mat-card-header>
+        <mat-card-content>
+          <h1>Total Marks: {{ maximumMarks }}</h1>
+          <h1>Marks Got: {{ totalMarksScored }}</h1>
+          <h1>Correct Answers: {{ totalCorrectAnswers }}</h1>
+          <h1>Questions Attempted: {{ totalQuestionsAttempted }}</h1>
+          <h1 *ngIf="passStatus === 'PASS'" style="color: green">
+            <strong>PASS</strong>
+          </h1>
+          <h1 *ngIf="passStatus === 'FAIL'" style="color: red">
+            <strong>FAIL</strong>
+          </h1>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>
