@@ -42,6 +42,7 @@ import { ViewUserQuizzesComponent } from './pages/normal/view-user-quizzes/view-
 import { QuizInstructionsComponent } from './pages/normal/quiz-instructions/quiz-instructions.component';
 import { StartQuizComponent } from './pages/normal/start-quiz/start-quiz.component';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSlideToggleModule,
     MatDialogModule,
     MatRadioModule,
-    CKEditorModule
+    CKEditorModule,
+    MatProgressSpinnerModule
   ],
   providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}, {
     provide: HTTP_INTERCEPTORS,

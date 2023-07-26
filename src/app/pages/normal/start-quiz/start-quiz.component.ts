@@ -20,6 +20,8 @@ export class StartQuizComponent implements OnInit {
   testSubmitted = false;
   maximumMarks = 0;
   passStatus = "FAIL"
+  timer: any;
+  len = 10;
 
   constructor(private locationStrategy: LocationStrategy, private route: ActivatedRoute, private questionService: QuestionService) {
 
@@ -41,8 +43,12 @@ export class StartQuizComponent implements OnInit {
       this.questions.forEach(question => {
         question['givenAnswer'] = ''
       });
-
+      
+      this.timer = this.questions.length * 10;
+      this.len = this.questions.length * 10;
       this.maximumMarks = this.questions[0].quiz.maximumMarks
+
+      this.startTimer()
       console.log(this.questions)
     }, (error) => {
       console.log(error)
@@ -77,5 +83,26 @@ export class StartQuizComponent implements OnInit {
     }
     
     this.testSubmitted = true;
+  }
+
+  startTimer() {
+    console.log("Timer Started")
+    console.log(this.len)
+    let timerRef = window.setInterval(() => {
+      if (this.timer <= 0) {
+        this.onSubmitTest();
+        clearInterval(timerRef);
+      } else {
+        console.log(this.timer)
+
+        this.timer--;
+      }
+    }, 1000)
+  }
+
+  getFormattedTime() {
+    let minutes = Math.floor(this.timer / 60)
+    let seconds = this.timer - (minutes * 60)
+    return `${minutes} min : ${seconds} sec`
   }
 }
