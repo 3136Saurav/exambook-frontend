@@ -22,6 +22,7 @@ export class StartQuizComponent implements OnInit {
   passStatus = "FAIL"
   timer: any;
   len = 10;
+  timerRef;
 
   constructor(private locationStrategy: LocationStrategy, private route: ActivatedRoute, private questionService: QuestionService) {
 
@@ -40,15 +41,17 @@ export class StartQuizComponent implements OnInit {
     this.questionService.getQuizQuestions(this.quizId).subscribe((data) => {
       console.log(data)
       this.questions = data;
-      this.questions.forEach(question => {
-        question['givenAnswer'] = ''
-      });
-      
-      this.timer = this.questions.length * 10;
-      this.len = this.questions.length * 10;
-      this.maximumMarks = this.questions[0].quiz.maximumMarks
+      if (this.questions.length > 0) {
+        this.questions.forEach(question => {
+          question['givenAnswer'] = ''
+        });
+        
+        this.timer = this.questions.length * 10;
+        this.len = this.questions.length * 10;
+        this.maximumMarks = this.questions[0].quiz.maximumMarks
 
-      this.startTimer()
+        this.startTimer()
+      }
       console.log(this.questions)
     }, (error) => {
       console.log(error)
@@ -58,40 +61,57 @@ export class StartQuizComponent implements OnInit {
   }
 
   onSubmitTest() {
-    console.log(this.questionAnswerForm.value)
+    console.log(this.questionAnswerForm)
     // this.questionAnswerForm.reset();
 
-    for (let i=0; i < this.questions.length; i++) {
-      console.log(this.questions[i].answer, this.questions[i].givenAnswer)
-      if (this.questions[i].answer === this.questions[i]['givenAnswer']) {
-        this.totalCorrectAnswers++;
-      }       
-      if (this.questions[i]['givenAnswer'] !== '') {
-        this.totalQuestionsAttempted++;
+
+    this.evaluateQuiz();
+    clearInterval(this.timerRef);
+  }
+
+  private evaluateQuiz() {
+    // for (let i = 0; i < this.questions.length; i++) {
+    //   console.log(this.questions[i].answer, this.questions[i].givenAnswer);
+    //   if (this.questions[i].answer === this.questions[i]['givenAnswer']) {
+    //     this.totalCorrectAnswers++;
+    //   }
+    //   if (this.questions[i]['givenAnswer'] !== '') {
+    //     this.totalQuestionsAttempted++;
+    //   }
+
+    // }
+
+    // this.maximumMarks = this.questions[0].quiz.maximumMarks;
+
+    // let singleQuestionScore = this.maximumMarks / this.questions.length;
+    // this.totalMarksScored = singleQuestionScore * this.totalCorrectAnswers;
+
+    // if (this.totalMarksScored >= this.maximumMarks / 2) {
+    //   this.passStatus = "PASS";
+    // }
+
+    this.questionService.evaluateQuiz(this.questions).subscribe((data: any) => {
+      console.log(data)
+      this.totalMarksScored = data["marksScored"]
+      this.totalCorrectAnswers = data["correctAnswers"]
+      this.totalQuestionsAttempted  = data["attemptedQuestions"]
+      if (this.totalMarksScored >= this.maximumMarks / 2) {
+          this.passStatus = "PASS";
       }
+    }, (error) => {
+      console.log(error);
+    })
 
-    }
-
-
-    this.maximumMarks = this.questions[0].quiz.maximumMarks 
-
-    let singleQuestionScore = this.maximumMarks / this.questions.length;
-    this.totalMarksScored = singleQuestionScore * this.totalCorrectAnswers;
-    
-    if (this.totalMarksScored >= this.maximumMarks / 2) {
-      this.passStatus = "PASS"
-    }
-    
     this.testSubmitted = true;
   }
 
   startTimer() {
     console.log("Timer Started")
     console.log(this.len)
-    let timerRef = window.setInterval(() => {
+    this.timerRef = window.setInterval(() => {
       if (this.timer <= 0) {
         this.onSubmitTest();
-        clearInterval(timerRef);
+        clearInterval(this.timerRef);
       } else {
         console.log(this.timer)
 
@@ -104,5 +124,9 @@ export class StartQuizComponent implements OnInit {
     let minutes = Math.floor(this.timer / 60)
     let seconds = this.timer - (minutes * 60)
     return `${minutes} min : ${seconds} sec`
+  }
+
+  onPrint() {
+    window.print()
   }
 }

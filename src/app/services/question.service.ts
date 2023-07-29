@@ -20,4 +20,8 @@ export class QuestionService {
   public deleteQuestion(questionId) {
     return this.http.delete(`${baseUrl}/question/${questionId}`, {responseType: 'text'})
   }
+
+  public evaluateQuiz(questions) {
+    return this.http.post(`${baseUrl}/question/evaluateQuiz`, questions);
+  }
 }
